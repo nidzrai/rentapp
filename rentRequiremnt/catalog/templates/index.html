@@ -1,0 +1,18 @@
+{% extends "base_generic.html" %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+{% block content %}
+{% block title %}<title>Product Requirment</title>{% endblock %}
+  <h1>Product Requirment Home</h1>
+  <p>Welcome to ProductRequirmet, a website developed by <em>Nidhi Rai</em>!</p>
+  <h2>Dynamic content</h2>
+  <p>The page has the following record counts:</p>
+  <ul>
+    <li><strong>Product Requirment:</strong> {{ num_products }}</li>
+    <li><strong>Matching :</strong> {{ num_instances }}</li>
+    <li><strong>Quotations available:</strong> {{ num_instances_available }}</li>
+    <li><strong>Brand:</strong> {{ num_brands }}</li>
+     <li><strong>Visits:</strong> {{ num_visits }}</li>
+  </ul>
+<p>You have visited this page {{ num_visits }}{% if num_visits == 1 %} time{% else %} times{% endif %}.</p>
+{% endblock %}

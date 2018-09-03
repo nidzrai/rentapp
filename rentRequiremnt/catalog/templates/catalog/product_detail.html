@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Title: {{product.title }}</h1>
+
+  <p><strong>Brand:</strong> <a href="">{{ product.brand }}</a></p> <!-- author detail link not yet defined -->
+  <p><strong>Summary:</strong> {{ product.summary }}</p>
+  <p><strong>Category:</strong> {{ product.category }}</p>
+
+      <p><strong>Memory:</strong> {% for memory in product.memory.all %} {{ memory }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
+       <p><strong>RAM:</strong> {% for ram in product.ram.all %} {{ ram }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
+       <p><strong>Processor:</strong> {% for processor in product.processor.all %} {{ processor }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
+
+  <div style="margin-left:20px;margin-top:20px">
+    <h4>Copies</h4>
+
+    {% for copy in product.productinstance_set.all %}
+      <hr>
+      <p class="{% if copy.status == 'a' %}text-success{% elif copy.status == 'd' %}text-danger{% else %}text-warning{% endif %}">{{ copy.get_status_display }}</p>
+      {% if copy.status != 'a' %}
+        <p><strong>Product requiremet due date:</strong> {{copy.due_back}}</p>
+      {% endif %}
+      <p><strong>Imprint:</strong> {{copy.imprint}}</p>
+      <p class="text-muted"><strong>Id:</strong> {{copy.id}}</p>
+    {% endfor %}
+  </div>
+{% endblock %}</title>
+</head>
+<body>
+
+</body>
+</html>
